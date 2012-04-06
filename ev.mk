@@ -15,7 +15,7 @@ PRODUCT_MANUFACTURER := HTC
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=GRI40 PRODUCT_NAME=sprint/htc_kingdom/kingdom:2.3.4/GRJ22/247025.5:user/release-keys PRIVATE_BUILD_DESC="2.12.651.5 CL247025 release-keys"
 
 # Set up the product codename, build version & MOTD.
-PRODUCT_CODENAME := Bibo
+PRODUCT_CODENAME := Scio
 PRODUCT_VERSION_DEVICE_SPECIFIC := p1
 
 PRODUCT_MOTD :="\n\n\n--------------------MESSAGE---------------------\nThank you for choosing Evervolv for your Kingdom\nPlease visit us at \#evervolv on irc.freenode.net\nFollow @preludedrew for the latest Evervolv updates\nGet the latest rom at evervolv.com\n------------------------------------------------\n"
