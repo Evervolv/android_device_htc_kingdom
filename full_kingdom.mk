@@ -155,6 +155,49 @@ PRODUCT_COPY_FILES += \
     device/htc/kingdom/prebuilt/system/etc/voPDLog.cfg:system/etc/voPDLog.cfg \
     device/htc/kingdom/prebuilt/system/etc/voVidDec.dat:system/etc/voVidDec.dat
 
+# Audio DSP Profiles
+PRODUCT_COPY_FILES += \
+    device/htc/kingdom/prebuilt/system/etc/dsp/AIC3254_REG_DualMic.csv:system/etc/AIC3254_REG_DualMic.csv \
+    device/htc/kingdom/prebuilt/system/etc/dsp/CodecDSPID.txt:system/etc/CodecDSPID.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Bass_Booster.txt:system/etc/soundimage/Sound_Bass_Booster.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Blues.txt:system/etc/soundimage/Sound_Blues.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Classical.txt:system/etc/soundimage/Sound_Classical.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Country.txt:system/etc/soundimage/Sound_Country.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Jazz.txt:system/etc/soundimage/Sound_Jazz.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Latin.txt:system/etc/soundimage/Sound_Latin.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_New_Age.txt:system/etc/soundimage/Sound_New_Age.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Original.txt:system/etc/soundimage/Sound_Original.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Original_BCLK.txt:system/etc/soundimage/Sound_Original_BCLK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Original_Recording.txt:system/etc/soundimage/Sound_Original_Recording.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Original_Recording_BCLK.txt:system/etc/soundimage/Sound_Original_Recording_BCLK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Original_SPK.txt:system/etc/soundimage/Sound_Original_SPK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Original_SPK_BCLK.txt:system/etc/soundimage/Sound_Original_SPK_BCLK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Phone_Original_HP.txt:system/etc/soundimage/Sound_Phone_Original_HP.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Phone_Original_HP_BCLK.txt:system/etc/soundimage/Sound_Phone_Original_HP_BCLK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Phone_Original_REC.txt:system/etc/soundimage/Sound_Phone_Original_REC.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Phone_Original_REC_BCLK.txt:system/etc/soundimage/Sound_Phone_Original_REC_BCLK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Phone_Original_SPK.txt:system/etc/soundimage/Sound_Phone_Original_SPK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Phone_Original_SPK_BCLK.txt:system/etc/soundimage/Sound_Phone_Original_SPK_BCLK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Piano.txt:system/etc/soundimage/Sound_Piano.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Pop.txt:system/etc/soundimage/Sound_Pop.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_R_B.txt:system/etc/soundimage/Sound_R_B.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Rec_Landscape.txt:system/etc/soundimage/Sound_Rec_Landscape.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Rec_Portrait.txt:system/etc/soundimage/Sound_Rec_Portrait.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Recording.txt:system/etc/soundimage/Sound_Recording.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Rock.txt:system/etc/soundimage/Sound_Rock.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_SRS_A_HP.txt:system/etc/soundimage/Sound_SRS_A_HP.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_SRS_A_SPK.txt:system/etc/soundimage/Sound_SRS_A_SPK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_SRS_V_HP.txt:system/etc/soundimage/Sound_SRS_V_HP.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_SRS_V_SPK.txt:system/etc/soundimage/Sound_SRS_V_SPK.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Treble_Booster.txt:system/etc/soundimage/Sound_Treble_Booster.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_Vocal_Booster.txt:system/etc/soundimage/Sound_Vocal_Booster.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/Sound_recording_IMIC_voice_mono.txt:system/etc/soundimage/Sound_recording_IMIC_voice_mono.txt \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/srs_geq10.cfg:system/etc/soundimage/srs_geq10.cfg \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/srsfx_trumedia_51.cfg:system/etc/soundimage/srsfx_trumedia_51.cfg \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/srsfx_trumedia_movie.cfg:system/etc/soundimage/srsfx_trumedia_movie.cfg \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/srsfx_trumedia_music.cfg:system/etc/soundimage/srsfx_trumedia_music.cfg \
+    device/htc/kingdom/prebuilt/system/etc/dsp/soundimage/srsfx_trumedia_voice.cfg:system/etc/soundimage/srsfx_trumedia_voice.cfg
+
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
