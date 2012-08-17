@@ -23,81 +23,47 @@
 # WARNING: This line must come *before* including the proprietary
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
+USE_CAMERA_STUB := true
 
+# inherit from common msm7x30
+-include device/htc/msm7x30-common/BoardConfigCommon.mk
 
 # inherit from the proprietary version
 -include vendor/htc/kingdom/BoardConfigVendor.mk
 
-TARGET_NO_BOOTLOADER := true
-
-TARGET_BOARD_PLATFORM := msm7x30
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 TARGET_BOOTLOADER_BOARD_NAME := kingdom
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH_VARIANT := armv7-a-neon
-ARCH_ARM_HAVE_TLS_REGISTER := true
-
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-
-TARGET_SPECIFIC_HEADER_PATH := device/htc/kingdom/include
-
-# Wifi related defines
-BOARD_WPA_SUPPLICANT_DRIVER      := WEXT
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_WLAN_DEVICE                := bcm4329
-WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/bcm4329.ko"
-WIFI_DRIVER_FW_PATH_STA          := "/vendor/firmware/fw_bcm4329.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/vendor/firmware/fw_bcm4329_apsta.bin"
-WIFI_DRIVER_MODULE_ARG           := "firmware_path=/vendor/firmware/fw_bcm4329.bin nvram_path=/proc/calibration"
-WIFI_DRIVER_MODULE_NAME          := "bcm4329"
-
-#BOARD_USE_LEGACY_TOUCHSCREEN := true
-
-#BOARD_USES_GENERIC_AUDIO := false
-#BOARD_PREBUILT_LIBAUDIO := true
-
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_BCM := true
-
-BOARD_VENDOR_QCOM_AMSS_VERSION := 1200
-
-BOARD_USE_NEW_LIBRIL_HTC := true
 
 BOARD_KERNEL_CMDLINE := no_console_suspend=1
-BOARD_KERNEL_RECOVERY_CMDLINE := $(BOARD_KERNEL_CMDLINE) #msmsdcc_power_gpio=88
 BOARD_KERNEL_BASE := 0x05000000
 BOARD_KERNEL_PAGE_SIZE := 4096
-BOARD_PAGE_SIZE := 00001000
 
-BOARD_EGL_CFG := device/htc/kingdom/prebuilt/system/lib/egl/egl.cfg
-BOARD_USES_ADRENO_200 := true
-ARCH_ARM_HAVE_VFP := true
-USE_OPENGL_RENDERER := true
-TARGET_FORCE_CPU_UPLOAD := true
-TARGET_USES_C2D_COMPOSITION := true
-TARGET_USES_OVERLAY := true
-TARGET_USES_GENLOCK := true
-TARGET_USES_SF_BYPASS := true
-TARGET_HAVE_BYPASS := true
-TARGET_GRALLOC_USES_ASHMEM := true
+TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
+TARGET_USE_SCORPION_PLD_SET := true
+TARGET_SCORPION_BIONIC_PLDOFFS := 6
+TARGET_SCORPION_BIONIC_PLDSIZE := 128
 
-BOARD_USES_QCOM_HARDWARE := true
-BOARD_USES_QCOM_LIBS := true
-BOARD_USES_QCOM_LIBRPC := true
-BOARD_USES_QCOM_GPS := true
-BOARD_USE_QCOM_PMEM := true
-TARGET_FORCE_CPU_UPLOAD := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := kingdom
+BOARD_VENDOR_QCOM_AMSS_VERSION := 1200
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
-COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE
+TARGET_PROVIDES_LIBLIGHTS := true
+BOARD_USES_LEGACY_RIL := true
 
-#BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := kingdom
-#BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
+BOARD_HAVE_HTC_FFC := true
+BOARD_USE_REVERSE_FFC := true
 
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/file
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DSCREEN_RELEASE -DREFRESH_RATE=60 -DICS_CAMERA_BLOB -DRIL_VERSION_2_SUPPORT -DQCOM_NO_SECURE_PLAYBACK
 
+BOARD_PREBUILT_LIBAUDIO := false
+BOARD_USES_QCOM_AUDIO_VOIPMUTE := false
+BOARD_USES_QCOM_AUDIO_RESETALL := false
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+
+
+# Wifi Related defines
+WIFI_BAND                        := 802_11_ABGN
+
+#Partition Sizes
 # cat /proc/emmc
 #dev:        size     erasesize name
 #mmcblk0p17: 00040000 00000200 "misc"
@@ -112,16 +78,40 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun0/f
 #mmcblk0p30: 007ffa00 00000200 "udata_wimax"
 
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 435941376
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 1394606080
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 827731968
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1233100800
 BOARD_BOOTIMAGE_PARTITION_SIZE := 4194304
 BOARD_FLASH_BLOCK_SIZE := 262144
 
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
+
+# Kernel Defines
+TARGET_KERNEL_SOURCE := kernel/htc/msm7x30
+TARGET_KERNEL_CONFIG := cyanogen_kingdom_defconfig
 TARGET_PREBUILT_KERNEL := device/htc/kingdom/prebuilt/root/kernel
 
+# Recovery Defines
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
 BOARD_SDCARD_DEVICE_SECONDARY := /dev/block/mmcblk1
-BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
-BOARD_USES_MMCUTILS := true
-BOARD_HAS_NO_SELECT_BUTTON := 1
+#BOARD_SDEXT_DEVICE := /dev/block/mmcblk1p2
+BOARD_USES_MMCUTILS := false
+BOARD_HAS_NO_MISC_PARTITION := false
+
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_otg/msm_hsusb/gadget/lun0/file
+
+# Webkit
+ENABLE_WEBGL := true
+TARGET_FORCE_CPU_UPLOAD := true
+
+#Testing Defines
+TARGET_USES_PMEM := true
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_SF_BYPASS := true
+TARGET_HAVE_BYPASS := true
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
