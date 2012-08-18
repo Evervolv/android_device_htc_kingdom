@@ -27,9 +27,9 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk Files
 PRODUCT_COPY_FILES += \
+    device/htc/kingdom/prebuilt/root/init:root/init \
     device/htc/kingdom/prebuilt/root/init.kingdom.rc:root/init.kingdom.rc \
     device/htc/kingdom/prebuilt/root/init.rc:root/init.rc \
-    device/htc/kingdom/prebuilt/root/init.usb.rc:root/init.usb.rc \
     device/htc/kingdom/prebuilt/root/ueventd.kingdom.rc:root/ueventd.kingdom.rc \
     device/htc/kingdom/prebuilt/root/ueventd.rc:root/ueventd.rc 
 
