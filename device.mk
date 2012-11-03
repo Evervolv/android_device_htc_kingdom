@@ -27,11 +27,9 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk Files
 PRODUCT_COPY_FILES += \
-    device/htc/kingdom/prebuilt/root/init:root/init \
     device/htc/kingdom/prebuilt/root/init.kingdom.rc:root/init.kingdom.rc \
-    device/htc/kingdom/prebuilt/root/init.rc:root/init.rc \
     device/htc/kingdom/prebuilt/root/ueventd.kingdom.rc:root/ueventd.kingdom.rc \
-    device/htc/kingdom/prebuilt/root/ueventd.rc:root/ueventd.rc 
+    device/htc/kingdom/prebuilt/root/init.kingdom.usb.rc:root/init.kingdom.usb.rc
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
@@ -117,21 +115,21 @@ PRODUCT_COPY_FILES += \
 # Kernel modules
 #PRODUCT_COPY_FILES += \
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/htc/kingdom/prebuilt/root/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
+#ifeq ($(TARGET_PREBUILT_KERNEL),)
+#LOCAL_KERNEL := device/htc/kingdom/prebuilt/root/kernel
+#else
+#LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+#endif
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_KERNEL):kernel
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_KERNEL):kernel
 
 #Modules
-PRODUCT_COPY_FILES += \
-    device/htc/kingdom/prebuilt/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
-    device/htc/kingdom/prebuilt/modules/sequans_sdio.ko:system/lib/modules/sequans_sdio.ko \
-    device/htc/kingdom/prebuilt/modules/wimaxdbg.ko:system/lib/modules/wimaxdbg.ko \
-    device/htc/kingdom/prebuilt/modules/wimaxuart.ko:system/lib/modules/wimaxuart.ko 
+#PRODUCT_COPY_FILES += \
+#    device/htc/kingdom/prebuilt/modules/bcm4329.ko:system/lib/modules/bcm4329.ko \
+#    device/htc/kingdom/prebuilt/modules/sequans_sdio.ko:system/lib/modules/sequans_sdio.ko \
+#    device/htc/kingdom/prebuilt/modules/wimaxdbg.ko:system/lib/modules/wimaxdbg.ko \
+#    device/htc/kingdom/prebuilt/modules/wimaxuart.ko:system/lib/modules/wimaxuart.ko 
 
 $(call inherit-product, build/target/product/full_base.mk)
 

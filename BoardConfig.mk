@@ -33,6 +33,8 @@ USE_CAMERA_STUB := true
 
 TARGET_BOOTLOADER_BOARD_NAME := kingdom
 
+BOARD_FORCE_RAMDISK_ADDRESS := 0x6200000
+
 BOARD_KERNEL_CMDLINE := no_console_suspend=1
 BOARD_KERNEL_BASE := 0x05000000
 BOARD_KERNEL_PAGE_SIZE := 4096
@@ -69,9 +71,10 @@ WIFI_BAND                        := 802_11_ABGN
 #mmcblk0p17: 00040000 00000200 "misc"
 #mmcblk0p21: 0087f400 00000200 "recovery"
 #mmcblk0p22: 00400000 00000200 "boot"
-#mmcblk0p26: 1f7bf600 00000200 "system"
-#mmcblk0p28: 09a7fa00 00000200 "cache"
-#mmcblk0p27: 1bbffe00 00000200 "userdata"
+#mmcblk0p26: 321ffa00 00000200 "system"
+#mmcblk0p29: 00140200 00000200 "local"
+#mmcblk0p28: 08fc3400 00000200 "cache"
+#mmcblk0p27: 4aabc400 00000200 "userdata"
 #mmcblk0p31: 01400200 00000200 "devlog"
 #mmcblk0p32: 00040000 00000200 "pdata"
 #mmcblk0p25: 00c00200 00000200 "wimax"
@@ -86,8 +89,11 @@ BOARD_FLASH_BLOCK_SIZE := 262144
 TARGET_RELEASETOOLS_EXTENSIONS := device/htc/common
 
 # Kernel Defines
-TARGET_KERNEL_SOURCE := kernel/htc/msm7x30
-TARGET_KERNEL_CONFIG := cyanogen_kingdom_defconfig
+TARGET_KERNEL_SOURCE := kernel/htc/kingdom #msm7x30
+TARGET_KERNEL_CONFIG := evervolv_kingdom_defconfig
+KERNEL_TOOLCHAIN_PREFIX:=$(ANDROID_BUILD_TOP)/prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/arm-eabi-
+BUILD_KERNEL := true
+
 TARGET_PREBUILT_KERNEL := device/htc/kingdom/prebuilt/root/kernel
 
 # Recovery Defines

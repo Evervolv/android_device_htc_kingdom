@@ -1,41 +1,29 @@
-on emmc
+import init.kingdom.usb.rc
 
+on early-init
+    export EXTERNAL_STORAGE /mnt/sdcard
+    mkdir /mnt/sdcard 0000 system system
+    symlink /mnt/sdcard /sdcard
+
+on early-fs
     mkdir /system
     mkdir /data 0771 system system
     mkdir /cache 0770 system cache
     mkdir /devlog 0700 root root
-    devwait emmc@system
-    mount ext4 emmc@system /system ro barrier=1
-    devwait emmc@userdata
-#   exec /system/bin/e2fsck -p emmc@userdata
-    mount ext4 emmc@userdata /data nosuid nodev barrier=1 noauto_da_alloc
-    mount ext4 emmc@cache /cache nosuid nodev barrier=1
-    mount ext4 emmc@devlog /devlog nosuid nodev barrier=1
 
-on early-init
-    device mtd@misc 0460 radio diag
+    mount ext4 /dev/block/mmcblk0p26 /system wait ro noatime nodiratime barrier=0 nouser_xattr
+    mount ext4 /dev/block/mmcblk0p27 /data wait noatime nodiratime nosuid nodev barrier=0 noauto_da_alloc nouser_xattr
+    mount ext4 /dev/block/mmcblk0p28 /cache wait noatime nodiratime nosuid nodev barrier=0 nouser_xattr
+    mount ext4 /dev/block/mmcblk0p31 /devlog wait noatime nodiratime nosuid nodev barrier=0 nouser_xattr
 
-on init
-    # double check the perms and set owner
-    chown root root /devlog
-    chmod 0700 /devlog
-
-    #set G-Sensor and Compass permissions
-    chown compass system /dev/akm8975_aot
-    chown compass system /dev/akm8975_daemon
-    chown compass system /dev/bma150
-    chmod 0640 /dev/akm8975_aot
-    chmod 0640 /dev/akm8975_daemon
-    chmod 0640 /dev/bma150
-
-on boot
-# + SSD_RIL: Otis: from Qualcomm QMI and Netmgrd
     mkdir /data/radio 0770 radio radio
-# - SSD_RIL: Otis: from Qualcomm QMI and Netmgrd
+    mkdir /data/misc 1771 system misc
     mkdir /data/misc/wifi 0770 wifi wifi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
     chown dhcp dhcp /data/misc/dhcp
+
+    # Wimax
     mkdir /data/misc/wimax 0770 wimax wimax
     mkdir /data/misc/wimax/sockets 0770  wimax wimax
     mkdir /data/wimax/ 0770  system system
@@ -45,12 +33,24 @@ on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chmod 0660                /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /dev/ttyHS0    
+    chmod 0770 /dev/ttyHS0
+
+    # bluetooth MAC address programming
+    chown bluetooth bluetooth /sys/module/board_kingdom/parameters/bdaddr
+    setprop ro.bt.bdaddr_path /sys/module/board_kingdom/parameters/bdaddr
+    # bluetooth car dock pin
+    chown system system /sys/class/switch/dock/bt_pin
+
+    #set G-Sensor and Compass permissions
+    chown compass system /dev/akm8975_aot
+    chown compass system /dev/akm8975_daemon
+    chown compass system /dev/bma150
+    chmod 0640 /dev/akm8975_aot
+    chmod 0640 /dev/akm8975_daemon
+    chmod 0640 /dev/bma150
 	
-	# Widevine DRM
-	chown drm system /dev/htcdrm
-	chmod 0660 /dev/htcdrm
-	
-	# for wireless modem
+	# for wireless modem TODO:
 	chown system system /sys/module/serial/parameters/modem_enabled
 	chown system system /dev/ttyHSUSB0
 	chown system system /dev/ttySA0
@@ -76,7 +76,7 @@ on boot
     # for Slate charging timer
 	chown radio /sys/class/power_supply/battery/charger_timer
 
-	# Discretix DRM
+	# Discretix DRM TODO:
     mkdir /data/DxDrm
     mkdir /data/DxDrm/fuse
     mkdir /data/DxDrm/Credentials
@@ -85,7 +85,7 @@ on boot
     copy /etc/DxPrdyProvisionObf.pkg /data/DxDrm/Credentials/PlayReady/DxPrdyProvisionObf.pkg
     copy /etc/DxDrmConfig_Server.txt /data/DxDrm/DxDrmConfig_Server.txt
     
-    # Overwrite framework low memory killer setting
+    # Overwrite framework low memory killer setting TODO:
     write /sys/module/lowmemorykiller/parameters/adj 0,2,4,7,9,12
     write /sys/module/lowmemorykiller/parameters/minfree 6348,8089,9830,11878,13619,16793
     write /sys/module/lowmemorykiller/parameters/minfile 6348,8089,9830,11878,13619,16793
@@ -307,5 +307,3 @@ on property:ro.build.tags=test-keys
 
 on property:ro.build.tags=release-keys
     start htc_ebdlogd_rel
-
-
