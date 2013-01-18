@@ -109,8 +109,11 @@ PRODUCT_COPY_FILES += \
 # Media Config Files
 PRODUCT_COPY_FILES += \
     device/htc/kingdom/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
-	device/htc/kingdom/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
+    device/htc/kingdom/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
     device/htc/kingdom/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml	
+
+# BCM4329 firmware
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 
 # Kernel modules
 #PRODUCT_COPY_FILES += \

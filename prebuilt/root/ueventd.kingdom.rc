@@ -31,4 +31,5 @@
 #genlock
 /dev/genlock            0666    root        root
 
-
+# wifi
+/dev/rfkill             0660    root        wifi
