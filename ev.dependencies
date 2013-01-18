@@ -1,0 +1,7 @@
+[
+ {
+    "repository": "android_kernel_htc_primoc",
+    "target_path": "kernel/htc/primoc",
+    "branch": "jellybean"
+ }
+]
