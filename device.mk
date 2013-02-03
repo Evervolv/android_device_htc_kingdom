@@ -47,9 +47,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240
 	
 # Carrier Info
-CDMA_GOOGLE_BASE := android-uscellular-us
-CDMA_CARRIER_ALPHA := U.S. Cellular
-CDMA_CARRIER_NUMERIC := 311220
+CDMA_GOOGLE_BASE := android-sprint-us
+CDMA_CARRIER_ALPHA := Sprint
+CDMA_CARRIER_NUMERIC := 310120
 
 # Property Overides for Carrier
 PRODUCT_PROPERTY_OVERRIDES += \
