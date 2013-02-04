@@ -194,6 +194,7 @@ on property:ro.use_data_netmgrd=false
 
 # compass/accelerometer daemon
 service akmd /system/bin/akmd
+    class core
     user compass
     group compass misc input
     
