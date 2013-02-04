@@ -8,9 +8,8 @@ $(call inherit-product, vendor/ev/config/common_full_phone.mk)
 # Setup device specific product configuration.
 #
 PRODUCT_NAME := ev_kingdom
-PRODUCT_DEVICE := kingdom
 
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=htc_kingdom BUILD_FINGERPRINT=us_cellular_wwe/htc_kingdom/4.0.3/IML74K/154321.9:user/release-keys PRIVATE_BUILD_DESC="1.11.653.0 CL367264 release-keys"
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=htc_kingdom BUILD_FINGERPRINT=sprint/htc_kingdom/kingdom:4.0.3/IML74K/409533.0:user/release-keys PRIVATE_BUILD_DESC="3.14.651.0 CL409533 release-keys"
 
 # Set up the product codename, build version & MOTD.
 PRODUCT_CODENAME := Scio
