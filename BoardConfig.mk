@@ -31,6 +31,9 @@ USE_CAMERA_STUB := true
 # inherit from the proprietary version
 -include vendor/htc/kingdom/BoardConfigVendor.mk
 
+# inherit wifi defines
+-include device/htc/msm7x30-common/bcmdhd.mk
+
 TARGET_BOOTLOADER_BOARD_NAME := kingdom
 
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x1200000
@@ -60,22 +63,6 @@ BOARD_PREBUILT_LIBAUDIO := false
 BOARD_USES_QCOM_AUDIO_VOIPMUTE := false
 BOARD_USES_QCOM_AUDIO_RESETALL := false
 BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
-
-
-# Wifi Related defines
-WIFI_BAND                        := 802_11_ABGN
-WPA_SUPPLICANT_VERSION           := VER_0_8_X
-BOARD_HOSTAPD_DRIVER             := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
-BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE                := bcmdhd
-BOARD_WLAN_DEVICE_REV            := bcm4329
-WIFI_DRIVER_FW_PATH_STA          := "/system/vendor/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_AP           := "/system/vendor/firmware/fw_bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P          := "/system/vendor/firmware/fw_bcmdhd_p2p.bin"
-WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
-
 
 #Partition Sizes
 # cat /proc/emmc
