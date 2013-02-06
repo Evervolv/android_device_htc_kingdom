@@ -4,6 +4,9 @@ $(call inherit-product, device/htc/kingdom/full_kingdom.mk)
 # Inherit some common evervolv stuff.
 $(call inherit-product, vendor/ev/config/common_full_phone.mk)
 
+# Inherit cdma config
+$(call inherit-product, vendor/ev/config/cdma.mk)
+
 #
 # Setup device specific product configuration.
 #
