@@ -1,70 +1,23 @@
 #
 # system.prop for kingdom
 #
-#ro.sf.lcd_density=240
+ro.sf.lcd_density=240
 
-#qcom display
-debug.sf.hw=1
-debug.composition.type=dyn
-ro.sf.compbypass.enable=1
-dev.pm.dyn_samplingrate=1
-
-#make file override suggested
-com.qc.hardware=true
-com.qc.hdmi_out=false
-
-#not needed should delete after mms is working
-# Modify MMS APN retry timer from 5s to 2s.
-#ro.gsm.2nd_data_retry_config=max_retries=3, 2000, 2000, 2000
-
-#these arent stock but they work well
 rild.libpath=/system/lib/libhtc_ril.so
-ro.ril.oem.ecclist=911
-ro.ril.set.mtusize=1472
-ro.ril.enable.amr.wideband=1
-ro.ril.avoid.pdp.overlap=1
-ro.ril.hsxpa=1
-ro.ril.gprsclass=10
-ro.ril.hep=1
-ro.ril.enable.dtm=0
-ro.ril.hsdpa.category=8
-ro.ril.enable.a53=1
-ro.ril.enable.3g.prefix=1
-ro.ril.htcmaskw1.bitmask=4294967295
-ro.ril.htcmaskw1=14449
-ro.ril.hsupa.category=6
-
-# Default network type.
-# 0 => WCDMA preferred.
 ro.telephony.default_network=4
+ro.ril.set.mtu1472 = 1
 
 wifi.interface=wlan0
-wifi.supplicant_scan_interval=15
+wifi.supplicant_scan_interval=45
+ro.com.google.locationfeatures = 1
 
-mobiledata.interfaces=rmnet0,rmnet1,rmnet2
-
-# The OpenGL ES API level that is natively supported by this device.
-# This is a 16.16 fixed point number
-ro.opengles.version=131072
+# For auto backlight default value
+settings.display.autobacklight=1
 
 # For the default value of agps
-ro.ril.def.agps.mode=1
+ro.ril.def.agps.mode=2
 
-# For HSDPA low throughput
-ro.ril.disable.power.collapse=1
+# Make cdma voicemail the default voicemail number.
+ro.cdma.voicemail.number = mine
 
-# Properties of Scalado Denoise param.
-postprocess.iso_midband=400
-postprocess.denoise_level=5
-
-# Recording Audio Workaround
-ro.camera.sound.disabled=1
-
-# USB Mounting
-persist.sys.usb.config=mass_storage,adb
-
-dalvik.vm.dexopt-data-only=1
-
-#disable system restrictions for all builds
-persist.sys.strictmode.visual=0
-ro.secure=0
+mobiledata.interfaces=rmnet0,rmnet1,rmnet2

@@ -20,20 +20,98 @@
 # details, it only fundamentally contains two inherit-product
 # lines, full and maguro, hence its name.
 #
+
+# common msm7x30 configs
+$(call inherit-product, device/htc/msm7x30-common/msm7x30.mk)
+
+# The gps config appropriate for this device
+PRODUCT_COPY_FILES += \
+    device/htc/kingdom/prebuilt/etc/gps.conf:system/etc/gps.conf
  
-# Camera
-PRODUCT_PACKAGES := \
-    Camera
+## (1) First, the most specific values, i.e. the aspects that are specific to GSM
 
-# Inherit from those products. Most specific first.
+# Ramdisk Files
+PRODUCT_COPY_FILES += \
+    device/htc/kingdom/prebuilt/root/init.kingdom.rc:root/init.kingdom.rc \
+    device/htc/kingdom/prebuilt/root/fstab.kingdom:root/fstab.kingdom \
+    device/htc/kingdom/prebuilt/root/ueventd.kingdom.rc:root/ueventd.kingdom.rc \
+    device/htc/kingdom/prebuilt/root/init.kingdom.usb.rc:root/init.kingdom.usb.rc
+
+## (2) Also get non-open-source GSM-specific aspects if available
+$(call inherit-product-if-exists, vendor/htc/kingdom/kingdom-vendor.mk)
+
+## (3)  Finally, the least specific parts, i.e. the non-GSM-specific aspects
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.google.networklocation=1 \
+    ro.com.google.gmsversion=2.3_r3 \
+    dalvik.vm.lockprof.threshold=500
+	
+# Carrier Info
+CDMA_GOOGLE_BASE := android-sprint-us
+CDMA_CARRIER_ALPHA := Sprint
+CDMA_CARRIER_NUMERIC := 310120
+
+# Property Overides for Carrier
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.com.google.clientidbase=$(CDMA_GOOGLE_BASE) \
+    ro.cdma.home.operator.alpha=$(CDMA_CARRIER_ALPHA) \
+    ro.cdma.home.operator.numeric=$(CDMA_CARRIER_NUMERIC) \
+    gsm.sim.operator.alpha=$(CDMA_CARRIER_ALPHA) \
+    gsm.sim.operator.numeric=$(CDMA_CARRIER_NUMERIC) \
+    gsm.operator.alpha=$(CDMA_CARRIER_ALPHA) \
+    gsm.operator.numeric=$(CDMA_CARRIER_NUMERIC)
+
+# Override /proc/sys/vm/dirty_ratio on UMS
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vold.umsdirtyratio=20
+
+DEVICE_PACKAGE_OVERLAYS += device/htc/kingdom/overlay
+
+# GPS
+PRODUCT_PACKAGES += \
+    gps.kingdom
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
+
+# Idc Files
+PRODUCT_COPY_FILES += \
+    device/htc/kingdom/prebuilt/usr/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
+    device/htc/kingdom/prebuilt/usr/idc/qwerty.idc:system/usr/idc/qwerty.idc \
+    device/htc/kingdom/prebuilt/usr/idc/qwerty2.idc:system/usr/idc/qwerty2.idc \
+    device/htc/kingdom/prebuilt/usr/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc 
+
+# Keychars Files
+PRODUCT_COPY_FILES += \
+    device/htc/kingdom/prebuilt/usr/keychars/Generic.kcm:system/usr/keychars/Generic.kcm \
+    device/htc/kingdom/prebuilt/usr/keychars/qwerty.kcm:system/usr/keychars/qwerty.kcm \
+    device/htc/kingdom/prebuilt/usr/keychars/qwerty2.kcm:system/usr/keychars/qwerty2.kcm \
+    device/htc/kingdom/prebuilt/usr/keychars/Virtual.kcm:system/usr/keychars/Virtual.kcm 
+
+# Keylayout Files
+PRODUCT_COPY_FILES += \
+    device/htc/kingdom/prebuilt/usr/keylayout/atmel-touchscreen.kl:system/usr/keylayout/atmel-touchscreen.kl \
+    device/htc/kingdom/prebuilt/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+    device/htc/kingdom/prebuilt/usr/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
+    device/htc/kingdom/prebuilt/usr/keylayout/kingdom-keypad.kl:system/usr/keylayout/kingdom-keypad.kl \
+    device/htc/kingdom/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
+    device/htc/kingdom/prebuilt/usr/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl
+
+# Media Config Files
+PRODUCT_COPY_FILES += \
+    device/htc/kingdom/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
+    device/htc/kingdom/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
+    device/htc/kingdom/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
+
+# kingdom uses high-density artwork where available
+PRODUCT_LOCALES += en
+
+# media profiles and capabilities spec
+$(call inherit-product, device/htc/kingdom/media_a1026.mk)
+
+# htc audio settings
+$(call inherit-product, device/htc/kingdom/media_htcaudio.mk)
+
+$(call inherit-product, build/target/product/full_base.mk)
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
-# Inherit from kingdom device
-$(call inherit-product, device/htc/kingdom/device.mk)
-
-# Set those variables here to overwrite the inherited values.
-PRODUCT_NAME := full_kingdom
-PRODUCT_DEVICE := kingdom
-PRODUCT_BRAND := sprint
-PRODUCT_MODEL := PH44100
-PRODUCT_MANUFACTURER := HTC
