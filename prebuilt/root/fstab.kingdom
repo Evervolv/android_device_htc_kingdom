@@ -7,4 +7,4 @@
 /dev/block/mmcblk0p31                       /devlog             ext4    noatime,nosuid,nodev,barrier=0  wait
 
 #SDCard
-/dev/block/mmcblk1                          auto                auto    defaults                        voldmanaged=sdcard0:1,noemulatedsd
+/devices/platform/msm_sdcc.4/mmc_host/mmc3  auto                auto    defaults                        voldmanaged=sdcard0:1,noemulatedsd
