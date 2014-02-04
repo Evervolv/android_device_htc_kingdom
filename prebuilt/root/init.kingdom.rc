@@ -1,6 +1,6 @@
 import init.kingdom.usb.rc
 
-on early-init
+on init
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
     mkdir /storage 0555 root root
     mkdir /storage/sdcard0 0700 root root
