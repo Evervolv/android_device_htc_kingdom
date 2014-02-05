@@ -97,12 +97,6 @@ PRODUCT_COPY_FILES += \
     device/htc/kingdom/prebuilt/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl \
     device/htc/kingdom/prebuilt/usr/keylayout/synaptics-rmi-touchscreen.kl:system/usr/keylayout/synaptics-rmi-touchscreen.kl
 
-# Media Config Files
-PRODUCT_COPY_FILES += \
-    device/htc/kingdom/prebuilt/etc/media_profiles.xml:system/etc/media_profiles.xml \
-    device/htc/kingdom/prebuilt/etc/audio_policy.conf:system/etc/audio_policy.conf \
-    device/htc/kingdom/prebuilt/etc/media_codecs.xml:system/etc/media_codecs.xml
-
 # kingdom uses high-density artwork where available
 PRODUCT_LOCALES += en
 
